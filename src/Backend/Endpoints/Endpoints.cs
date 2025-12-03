@@ -48,6 +48,7 @@ public static class Endpoints
         app.MapGet("/{shortUrl}", (string shortUrl, [FromServices] ILiteDatabase _context) =>
         {
             var id = _hashIds.Decode(shortUrl);
+            if (id.Length == 0) return Results.Empty;
             var tempId = id[0];
             var db = _context.GetCollection<UrlModel>();
             var entry = db.Query().Where(x => x.Id.Equals(tempId)).ToList().FirstOrDefault();
@@ -58,12 +59,19 @@ public static class Endpoints
         app.MapGet("/d/{shortUrl}", (string shortUrl, ILiteDatabase _context) =>
         {
             var id = _hashIds.Decode(shortUrl);
+            if (id.Length == 0) return Results.Empty;
             var tempId = id[0];
             var db = _context.GetCollection<UrlModel>();
             var entry = db.Query().Where(x => x.Id.Equals(tempId)).ToList().FirstOrDefault();
             if (entry != null) return RazorExtensions.Component<UrlModelDetail>(entry);
             return RazorExtensions.Component<Empty>();
         });
-        
+
+
+        app.MapGet("/pbase", (HttpContext context) =>
+        {
+            return Results.Text(context.Request.PathBase.ToString());
+        });
+
     }
 }

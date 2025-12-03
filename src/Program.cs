@@ -17,7 +17,7 @@ builder.Services.AddCors
             .AllowAnyOrigin()
             .AllowAnyMethod())
 );
-builder.Services.AddSingleton<ILiteDatabase, LiteDatabase>(_ => new LiteDatabase("minimal-url-shortener.db"));
+builder.Services.AddSingleton<ILiteDatabase, LiteDatabase>(_ => new LiteDatabase(Path.Combine(AppContext.BaseDirectory, "minimal-url-shortener.db")));
 builder.Services.AddEndpointsApiExplorer();
 var app = builder.Build();
 app.AddHtmxEndpoints();

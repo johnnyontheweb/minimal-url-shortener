@@ -12,6 +12,12 @@ public class UrlExtensions
             uriBuilder.Port = -1;
         }
         var baseUri = uriBuilder.Uri.AbsoluteUri;
+        
+        if (!string.IsNullOrEmpty(request.PathBase))
+        {
+            baseUri = baseUri.TrimEnd('/') + request.PathBase + '/';
+        }
+        
         return baseUri;
     }
 }
