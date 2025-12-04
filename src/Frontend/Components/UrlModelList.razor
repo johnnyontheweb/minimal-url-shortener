@@ -44,7 +44,7 @@
       <ul class="flex">
         <li>
           <a class="mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-light-300"
-             hx-get="/history?p=@(Model.Page > 1 ? Model.Page - 1 : Model.Page)"
+             hx-get="./history?p=@(Model.Page > 1 ? Model.Page - 1 : Model.Page)"
              hx-target="#urls"
              hx-swap="innerHTML"
              href="#"
@@ -56,7 +56,7 @@
         {
           <li>
             <a class="mx-1 flex h-9 w-9 items-center justify-center rounded-full p-0 text-sm shadow-md transition duration-150 ease-in-out @(Model.Page == i ? "bg-pink-500 text-white" : "border border-blue-gray-100 bg-transparent text-blue-gray-500 hover:bg-light-300")"
-               hx-get="/history?p=@i"
+               hx-get="./history?p=@i"
                hx-target="#urls"
                hx-swap="innerHTML"
                href="#"
@@ -67,7 +67,7 @@
         {
           <li>
             <a class="mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-light-300"
-               hx-get="/history?p=@(Model.Page + 1)"
+               hx-get="./history?p=@(Model.Page + 1)"
                hx-target="#urls"
                hx-swap="innerHTML"
                href="#"
